@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  useEffect(() => {
+    _getPost();
+  }, []);
+
+  const _getPost = async () => {
+    await axios
+      .get("/api/getPost")
+      .then(res => {
+        if (res.status === 200) {
+          const resultData = res.data;
+
+          console.log(resultData, "getPost res");
+        } else if (res.status === 400) {
+          console.log(res.data, "status 400");
+        }
+      })
+      .catch(e => {
+        console.log(e, "error");
+      });
+  };
+
+  return <div>hehehheh</div>;
+};
 
 export default App;
