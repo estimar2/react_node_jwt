@@ -5,10 +5,10 @@ const getPost = async (req, res) => {
   try {
     console.log("getPOST");
 
-    let sql = `select * from post`;
+    let sql = `select * from public.post`;
     let list = await postgres(sql);
 
-    console.log(list, "list");
+    // console.log(list, "list");
 
     return res.json({ list });
   } catch (error) {
